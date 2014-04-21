@@ -1,0 +1,105 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+---
+name: "Balsamiq Markup Language"
+scopeName: source.balsamiq
+fileTypes: ["*.balsamiq"]
+uuid: c8ce2f70-2240-40e9-9b1c-bb3c882a70cd
+
+patterns:
+  - name:    "string.unquoted"
+    match:   "\\\\[-_*&,]"
+    comment: "Escaped control characters"
+
+  - name:    "support.type.color"
+    match:   "({color:(#[0-9a-fA-F]{6}|[a-z]+)})([^{]*)?({color})?"
+    comment: "color spec"
+    captures:
+      "1":
+        name: "keyword.operator"
+      "2":
+        name: "constant.numeric"
+      "3":
+        name: "string.quoted"
+      "4":
+        name: "keyword.operator"
+
+  - name:    "support.type.size"
+    match:   "({size:(\\d+)})([^{]*)?({size})?"
+    comment: "size spec"
+    captures:
+      "1":
+        name: "keyword.operator"
+      "2":
+        name: "constant.numeric"
+      "3":
+        name: "string.quoted"
+      "4":
+        name: "keyword.operator"
+
+  - name:    "keyword.control"
+    match:   ","
+    comment: "Table tab"
+
+  - name:    "invalid.deprecated"
+    match:   "\\t"
+    comment: "Table tab"
+
+  - name:    "markup.italic"
+    begin:   "\\b_\\w"
+    end:     "\\w_\\b"
+    comment: "shown as italic"
+
+  - name:    "markup.bold"
+    begin:   "\\*\\w"
+    end:     "\\w\\*"
+    comment: "shown as bold"
+
+  - name:    "markup.underline"
+    begin:   "&\\w"
+    end:     "\\w&"
+    comment: "shown as underlined"
+
+  - name:    "markup.other.disabled"
+    match:   "(-)([^-]+)(-)"
+    comment: "shown as disabled"
+    captures:
+      "1":
+        name: "keyword.control"
+      "2":
+        name: "markup.bold.disabled"
+      "3":
+        name: "keyword.control"
+
+  - name:    "markup.underline.strikethrough"
+    match:   "(~)([^~]+)(~)"
+    captures:
+      "1":
+        name: "keyword.control"
+      "2":
+        name: "markup.underline.strikethrough"
+      "3":
+        name: "keyword.control"
+    comment: "shown as strikethrough"
+
+  - name:    "keyword.control"
+    match:   "\\[[^]]+\\]\\((.*?)\\)"
+    captures:
+      "0":
+        name: "markup.underline.link"
+      "1":
+        name: "variable.parameter"
+    comment: "shown as blue/underline, hotlinked to destination"
+
+  - name:    "keyword.control"
+    match:   "\\[([^]]+)\\]"
+    comment: "shown as blue/underline"
+    captures:
+      "0":
+        name: "markup.underline.link"
+
+  - name:    "markup.list"
+    match:   "^\\s*[-*]\\s.*"
+    comment: "unordered list"
+
+
+...
