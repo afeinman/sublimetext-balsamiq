@@ -45,13 +45,11 @@ patterns:
     comment: "Table tab"
 
   - name:    "markup.italic"
-    begin:   "\\b_\\w"
-    end:     "\\w_\\b"
+    match:   "_[^_]+_"
     comment: "shown as italic"
 
   - name:    "markup.bold"
-    begin:   "\\*\\w"
-    end:     "\\w\\*"
+    match:   "\\*([^*]+)\\*"
     comment: "shown as bold"
 
   - name:    "markup.underline"
